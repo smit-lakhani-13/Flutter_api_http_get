@@ -12,28 +12,32 @@ String sampleToJson(List<Sample> data) =>
 
 class Sample {
   Sample({
-    required this.userId,
+    required this.albumId,
     required this.id,
     required this.title,
-    required this.body,
+    required this.url,
+    required this.thumbnailUrl,
   });
 
-  int userId;
+  int albumId;
   int id;
   String title;
-  String body;
+  String url;
+  String thumbnailUrl;
 
   factory Sample.fromJson(Map<String, dynamic> json) => Sample(
-        userId: json["userId"],
+        albumId: json["albumId"],
         id: json["id"],
         title: json["title"],
-        body: json["body"],
+        url: json["url"],
+        thumbnailUrl: json["thumbnailUrl"],
       );
 
   Map<String, dynamic> toJson() => {
-        "userId": userId,
+        "albumId": albumId,
         "id": id,
         "title": title,
-        "body": body,
+        "url": url,
+        "thumbnailUrl": thumbnailUrl,
       };
 }

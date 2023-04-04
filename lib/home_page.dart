@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
                 itemCount: sample.length,
                 itemBuilder: (context, index) {
                   return Container(
-                    height: 130,
+                    height: 330,
                     color: Colors.grey,
                     padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                     margin: EdgeInsets.all(10),
@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'User id: ${sample[index].userId}',
+                            'Album id: ${sample[index].albumId}',
                             style: TextStyle(fontSize: 18),
                           ),
                           Text(
@@ -47,9 +47,22 @@ class _HomePageState extends State<HomePage> {
                             style: TextStyle(fontSize: 18),
                           ),
                           Text(
-                            'Body: ${sample[index].body}',
-                            maxLines: 1,
+                            'Url: ',
                             style: TextStyle(fontSize: 18),
+                          ),
+                          Image.network(
+                            sample[index].url,
+                            height: 60,
+                            width: 60,
+                          ),
+                          Text(
+                            'ThumbnailUrl: ',
+                            style: TextStyle(fontSize: 18),
+                          ),
+                          Image.network(
+                            sample[index].thumbnailUrl,
+                            width: 120,
+                            height: 120,
                           ),
                         ]),
                   );
@@ -63,8 +76,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<List<Sample>> getData() async {
-    final response =
-        await http.get(Uri.parse('https://jsonplaceholder.typicode.com/posts'));
+    final response = await http
+        .get(Uri.parse('https://jsonplaceholder.typicode.com/photos'));
     var data = jsonDecode(response.body.toString());
 
     if (response.statusCode == 200) {
